@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 import requests
 import json
 import html5lib
-usee="21951a6600"
+usee={}
 os.environ['TZ'] = 'America/Buenos_Aires'
 
 gods=["21951A6626","21951A6637","21951A6627","21951A6614"]
@@ -90,13 +90,11 @@ def login(update, context):
                 br=(cookk[-3]).split("=")
                 bran=br[-1]
                 global build
-                build[username]={}
-                build[username]['userr']=userr
-                build[username]['finc']=finc
-                build[username]['bran']=bran
-                build[username]['username']=username
-                global usee
-                usee=username
+                build[chat_id]={}
+                build[chat_id]['userr']=userr
+                build[chat_id]['finc']=finc
+                build[chat_id]['bran']=bran
+                build[chat_id]['username']=username
             except:
                 text = "Incorrect password"
                 Sendmessage(chat_id,text)
@@ -119,7 +117,7 @@ def solve(update,context):
     global build
     global usee
     username=usee
-    text = "<b>Solving as</b> -- <code>{} </code>".format(build[username]['username'])
+    text = "<b>Solving as</b> -- <code>{} </code>".format(build[chat_id]['username'])
     Sendmessage(chat_id,text)
     if True:
         if False:
@@ -130,10 +128,10 @@ def solve(update,context):
                 
                 cookies = {
    # '_ga': 'GA1.3.361214083.1658147021',
-    'token':build[username]["finc"],
-    'username': build[username]['username'],
-    'branch': build[username]['bran'],
-    'user': build[username]['userr'],
+    'token':build[chat_id]["finc"],
+    'username': build[chat_id]['username'],
+    'branch': build[chat_id]['bran'],
+    'user': build[chat_id]['userr'],
     'contestId': 'POTD{}'.format(pot),
 }
                 headers = {
@@ -151,8 +149,6 @@ def solve(update,context):
                 aa=str(response.content[12600:])
                 ke=(aa.find("#5"))
                 qii=aa[ke+1:ke+7]
-                text=qii
-                Sendmessage(chat_id,text)
                 headers = {
     'Accept': '*/*',
     'Accept-Language': 'en-US,en;q=0.9',
@@ -162,7 +158,7 @@ def solve(update,context):
     'Origin': 'http://buildit.iare.ac.in',
     'Referer': 'http://buildit.iare.ac.in/',
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36',
-    'authorization': build[username]['finc'],
+    'authorization': build[chat_id]['finc'],
 }
                 json_data = {
     'source_code': ccode,
@@ -170,7 +166,7 @@ def solve(update,context):
     'stdin': '',
     'contestId': 'POTD{}'.format(pot),
     'courseId': '',
-    'user': build[username]['userr'],
+    'user': build[chat_id]['userr'],
     'questionId': qii,
 }
                 response = requests.post('http://13.234.234.30:5000/validateSubmission', headers=headers, json=json_data, verify=False)
