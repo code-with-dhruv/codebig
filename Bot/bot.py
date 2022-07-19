@@ -2,22 +2,16 @@ from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import ( CommandHandler, Filters, MessageHandler, Updater)
 from message import Editmessage, Sendmessage, logger, sendfile, Deletemessage
 import os
-import telepot
-import urllib.request
-from PIL import Image
 import requests
 from bs4 import BeautifulSoup
-import random
-import string
 import requests
-import time
 import json
-import math
 import html5lib
-
+usee="21951a6600"
 os.environ['TZ'] = 'America/Buenos_Aires'
 
 gods=["21951A6626","21951A6637","21951A6627","21951A6614"]
+build={}
 members =[2141450636,809309749,2045746007,1257359605,2113380774,1134323688,2040610087]
 bot_token = os.environ.get('TG_BOT_TOKEN')
 startmessage = [[
@@ -54,13 +48,13 @@ def help(update, context):
 def login(update, context):
     chat_id = update.message.chat_id
     info = update.effective_user
-    userid= info['username']
+    #userid= info['username']
     text =  update.message.text.split(' ',2)
     username=text[1]
     password=text[2]
     logger.info(text)
     print(info)
-    Deletemessage(chat_id, update.message.message_id)
+    
     text = "<b>Logged in as</b> -- <code>{} </code>".format(username)
     Sendmessage(chat_id,text)
     if True:
@@ -83,6 +77,7 @@ def login(update, context):
 }
                 response = requests.post('http://buildit.iare.ac.in/login_', headers=headers, data=data, verify=False)
                 #print(response)
+		Deletemessage(chat_id, update.message.message_id)
                 cook=(response.headers['Set-Cookie'])
                 cookk=cook.split(";")
                 finc=cookk[0][6:]
@@ -94,6 +89,14 @@ def login(update, context):
                 Sendmessage(chat_id,text)
                 br=(cookk[-3]).split("=")
                 bran=br[-1]
+		global build
+		build[username]={}
+		build[username]['userr']=userr
+		build[username]['finc']=finc
+		build[username]['bran']=bran
+		build[username]['username']=username
+		global usee
+		usee=username
             except:
                 text = "Incorrect password"
                 Sendmessage(chat_id,text)
@@ -107,14 +110,16 @@ def login(update, context):
 def solve(update,context):
     chat_id = update.message.chat_id
     info = update.effective_user
-    userid= info['username']
+    #userid= info['username']
     text =  update.message.text.split(' ',2)
     pot=text[1]
     ccode=text[2]
     logger.info(text)
     print(info)
-    Deletemessage(chat_id, update.message.message_id)
-    text = "<b>Solving as</b> -- <code>{} </code>".format(userr[:-2])
+    global build
+    global usee
+    username=usee
+    text = "<b>Solving as</b> -- <code>{} </code>".format(build[username]['username'])
     Sendmessage(chat_id,text)
     if True:
         if False:
@@ -125,11 +130,11 @@ def solve(update,context):
                 
                 cookies = {
    # '_ga': 'GA1.3.361214083.1658147021',
-    'token':finc,
-    'username': username,
-    'branch': bran,
-    'user': userr,
-    'contestId': 'POTD{}'.format(),
+    'token':build[username]["finc"],
+    'username': build[username]['username'],
+    'branch': build[username]['bran'],
+    'user': build[username]['userr'],
+    'contestId': 'POTD{}'.format(pot),
 }
                 headers = {
     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
@@ -157,15 +162,15 @@ def solve(update,context):
     'Origin': 'http://buildit.iare.ac.in',
     'Referer': 'http://buildit.iare.ac.in/',
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36',
-    'authorization': finc,
+    'authorization': build[username]['finc'],
 }
                 json_data = {
     'source_code': ccode,
     'language_id': '34',
     'stdin': '',
-    'contestId': pot.upper(),
+    'contestId': 'POTD{}'.format(pot),
     'courseId': '',
-    'user': userr,
+    'user': build[username]['userr'],
     'questionId': qii,
 }
                 response = requests.post('http://13.234.234.30:5000/validateSubmission', headers=headers, json=json_data, verify=False)
@@ -173,6 +178,7 @@ def solve(update,context):
                 p=str(response.json())
                 text=p
                 Sendmessage(chat_id,text)
+		usee="21951a6600"
 
             except:
                 text = "Incorrect password"
