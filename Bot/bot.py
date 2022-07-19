@@ -77,7 +77,7 @@ def login(update, context):
 }
                 response = requests.post('http://buildit.iare.ac.in/login_', headers=headers, data=data, verify=False)
                 #print(response)
-		Deletemessage(chat_id, update.message.message_id)
+                Deletemessage(chat_id, update.message.message_id)
                 cook=(response.headers['Set-Cookie'])
                 cookk=cook.split(";")
                 finc=cookk[0][6:]
@@ -89,14 +89,14 @@ def login(update, context):
                 Sendmessage(chat_id,text)
                 br=(cookk[-3]).split("=")
                 bran=br[-1]
-		global build
-		build[username]={}
-		build[username]['userr']=userr
-		build[username]['finc']=finc
-		build[username]['bran']=bran
-		build[username]['username']=username
-		global usee
-		usee=username
+                global build
+                build[username]={}
+                build[username]['userr']=userr
+                build[username]['finc']=finc
+                build[username]['bran']=bran
+                build[username]['username']=username
+                global usee
+                usee=username
             except:
                 text = "Incorrect password"
                 Sendmessage(chat_id,text)
@@ -178,7 +178,7 @@ def solve(update,context):
                 p=str(response.json())
                 text=p
                 Sendmessage(chat_id,text)
-		usee="21951a6600"
+                usee="21951a6600"
 
             except:
                 text = "Incorrect password"
