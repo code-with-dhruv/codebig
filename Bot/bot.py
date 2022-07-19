@@ -94,7 +94,14 @@ def login(update, context):
                 Sendmessage(chat_id,text)
                 br=(cookk[-3]).split("=")
                 bran=br[-1]
+            except:
+                text = "Incorrect password"
+                Sendmessage(chat_id,text)
                 
+    else:
+        text = "Gods do not permit your entry!" 
+        Sendmessage(chat_id,text)
+
 
                 
 def solve(update,context):
