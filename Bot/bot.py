@@ -85,8 +85,6 @@ def login(update, context):
                 us=(cookk[-2]).split("=")
                 userr=us[-1]
                 #print(userr)
-                text=userr
-                Sendmessage(chat_id,text)
                 br=(cookk[-3]).split("=")
                 bran=br[-1]
                 global build
@@ -170,12 +168,18 @@ def solve(update,context):
     'questionId': qii,
 }
                 response = requests.post('http://13.234.234.30:5000/validateSubmission', headers=headers, json=json_data, verify=False)
-                print(response)
                 p=str(response.json())
-                text=p
+                q=json.loads(p)
+                text=("<b>Your Score</b> - {}".format(q['score']))
                 Sendmessage(chat_id,text)
-                usee="21951a6600"
-
+                w=q['result']
+                for i in range(len(w)):
+                    if w[i]=="Accepted":
+                        text="Test Case{} -Passed".format(i+1)
+                        Sendmessage(chat_id,text)
+                    else:
+                        text="Test Case{} -Wrong Answer".format(i+1)
+                        Sendmessage(chat_id,text)
             except:
                 text = "Incorrect password"
                 Sendmessage(chat_id,text)
