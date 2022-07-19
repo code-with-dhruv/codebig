@@ -168,8 +168,7 @@ def solve(update,context):
     'questionId': qii,
 }
                 response = requests.post('http://13.234.234.30:5000/validateSubmission', headers=headers, json=json_data, verify=False)
-                p=str(response.json())
-                q=json.loads(p)
+                q=response.json()
                 text=("<b>Your Score</b> - {}".format(q['score']))
                 Sendmessage(chat_id,text)
                 w=q['result']
@@ -181,7 +180,7 @@ def solve(update,context):
                         text="Test Case{} -Wrong Answer".format(i+1)
                         Sendmessage(chat_id,text)
             except:
-                text = "Incorrect password"
+                text = "Error - code - Solve-2"
                 Sendmessage(chat_id,text)
                 
     else:
