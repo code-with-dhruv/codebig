@@ -50,7 +50,7 @@ def save(update, context):
     info = update.effective_user
     #userid= info['username']
     global shortcut
-    text =  update.message.text.split(' ',2)
+    text =  update.message.text.split(' ',3)
     username=text[1]
     password=text[2]
     short=text[3]
