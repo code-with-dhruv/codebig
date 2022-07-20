@@ -226,6 +226,7 @@ def main():
     dp.add_handler(CommandHandler("start", start))
     dp.add_handler(CommandHandler("help", help))
     dp.add_handler(CommandHandler("cmds", cmds))
+    dp.add_handler(CommandHandler("save", save))
     dp.add_handler(CommandHandler("login", login))
     dp.add_handler(CommandHandler("solve", solve))
 
