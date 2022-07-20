@@ -8,6 +8,7 @@ import requests
 import json
 import html5lib
 usee={}
+shortcut={}
 os.environ['TZ'] = 'America/Buenos_Aires'
 
 gods=["21951A6626","21951A6637","21951A6627","21951A6614"]
@@ -43,18 +44,39 @@ def help(update, context):
     chat_id = update.message.chat_id
     text = "<b>Hey, welcome to this Bot! Sorry to say cmds of the bots have been taken to private!!</b>\n<code>Some cmds are listed here:</code> /cmds"
     Sendmessage(chat_id, text)
-
+############################################################################################################################
+def save(update, context):
+    chat_id = update.message.chat_id
+    info = update.effective_user
+    #userid= info['username']
+    global shortcut
+    text =  update.message.text.split(' ',2)
+    username=text[1]
+    password=text[2]
+    short=text[3]
+    logger.info(text)
+    print(info)
+    text = "<b>Saved as</b> -- <code>{} </code>".format(short)
+    Sendmessage(chat_id,text)
+    shortcut[short]={}
+    shortcut[short]['username']=username
+    shortcut[short]['password']=password
+    
 ######################################################################################################################
 def login(update, context):
     chat_id = update.message.chat_id
     info = update.effective_user
     #userid= info['username']
     text =  update.message.text.split(' ',2)
-    username=text[1]
-    password=text[2]
+    try:
+        username=text[1]
+        password=text[2]
+    except:
+        short=text[1]
+        username=shortcut[short]["username"]
+        password=shortcut[short]["password"]
     logger.info(text)
     print(info)
-    
     text = "<b>Logged in as</b> -- <code>{} </code>".format(username)
     Sendmessage(chat_id,text)
     if True:
