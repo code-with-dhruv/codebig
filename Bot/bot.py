@@ -143,10 +143,11 @@ def solve(update,context):
     'Upgrade-Insecure-Requests': '1',
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36',
 }
-                response = requests.get('http://buildit.iare.ac.in/contests/POTD91',cookies=cookies, headers=headers, verify=False)
+                response = requests.get('http://buildit.iare.ac.in/contests/POTD{}'.format(pot),cookies=cookies, headers=headers, verify=False)
                 aa=str(response.content[12600:])
                 ke=(aa.find("#5"))
                 qii=aa[ke+1:ke+7]
+                print(qii)
                 headers = {
     'Accept': '*/*',
     'Accept-Language': 'en-US,en;q=0.9',
@@ -169,6 +170,7 @@ def solve(update,context):
 }
                 response = requests.post('http://13.234.234.30:5000/validateSubmission', headers=headers, json=json_data, verify=False)
                 q=response.json()
+                print(q)
                 text=("<b>Your Score</b> - {}".format(q['score']))
                 Sendmessage(chat_id,text)
                 w=q['result']
