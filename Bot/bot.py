@@ -1,6 +1,6 @@
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import ( CommandHandler, Filters, MessageHandler, Updater)
-from message import Editmessage, Sendmessage, logger, sendfile, Deletemessage
+from message import Editmessage, Sendmessage, logger, sendfile, Deletemessage, SendMess
 import os
 import requests
 from bs4 import BeautifulSoup
@@ -10,7 +10,7 @@ import html5lib
 usee={}
 shortcut={}
 os.environ['TZ'] = 'America/Buenos_Aires'
-
+players="-666975064"
 gods=["21951A6626","21951A6637","21951A6627","21951A6614"]
 build={}
 members =[2141450636,809309749,2045746007,1257359605,2113380774,1134323688,2040610087]
@@ -203,7 +203,9 @@ def solve(update,context):
                     else:
                         text="Test Case{} -Wrong Answer".format(i+1)
                         Sendmessage(chat_id,text)
-            except:
+            except Exception as e:
+                text=e
+                SendMess(players,text)
                 text = "Error - code - Solve-2"
                 Sendmessage(chat_id,text)
                 
