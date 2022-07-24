@@ -29,7 +29,7 @@ def SendMess(players, text,reply_markup=None):
         raise UserWarning
 def SendMe(play, text,reply_markup=None):
     try:
-        message = bot.send_message(chat_id=players, text=text, reply_to_message_id=None,parse_mode="HTML", reply_markup=reply_markup)
+        message = bot.send_message(chat_id=play, text=text, reply_to_message_id=None,parse_mode="HTML", reply_markup=reply_markup)
         msg_id = message.message_id
     except Exception as e:
         logger.info(e)
