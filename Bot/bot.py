@@ -211,7 +211,7 @@ def solve(update,context):
                         text="Test Case{} -Wrong Answer".format(i+1)
                         Sendmessage(chat_id,text)
             except Exception as e:
-                text=e
+                text=str(e)
                 SendMess(players,text)
                 text = "Error - code - Solve-2"
                 Sendmessage(chat_id,text)
