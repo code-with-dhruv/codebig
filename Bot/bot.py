@@ -134,8 +134,6 @@ def solve(update,context):
     text=str(info)
     SendMe(play,text)
     text =  update.message.text.split(' ',2)
-    textt=str(text)
-    SendMe(play,textt)
     pot=text[1]
     ccode=text[2]
     logger.info(text)
