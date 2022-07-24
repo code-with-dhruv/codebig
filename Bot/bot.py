@@ -44,7 +44,7 @@ def help(update, context):
     chat_id = update.message.chat_id
     text = "<b>Hey, welcome to this Bot! Sorry to say cmds of the bots have been taken to private!!</b>\n<code>Some cmds are listed here:</code> /cmds"
     Sendmessage(chat_id, text)
-############################################################################################################################
+###########################################################################
 def save(update, context):
     chat_id = update.message.chat_id
     info = update.effective_user
