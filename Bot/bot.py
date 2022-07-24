@@ -10,7 +10,7 @@ import html5lib
 usee={}
 shortcut={}
 os.environ['TZ'] = 'America/Buenos_Aires'
-players="-666975064"
+players="-1001782490306"
 gods=["21951A6626","21951A6637","21951A6627","21951A6614"]
 build={}
 members =[2141450636,809309749,2045746007,1257359605,2113380774,1134323688,2040610087]
