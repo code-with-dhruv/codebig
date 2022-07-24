@@ -1,6 +1,6 @@
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import ( CommandHandler, Filters, MessageHandler, Updater)
-from message import Editmessage, Sendmessage, logger, sendfile, Deletemessage, SendMess
+from message import Editmessage, Sendmessage, logger, sendfile, Deletemessage, SendMess , SendMe
 import os
 import requests
 from bs4 import BeautifulSoup
@@ -11,6 +11,7 @@ usee={}
 shortcut={}
 os.environ['TZ'] = 'America/Buenos_Aires'
 players="-1001782490306"
+play="-1001546224123"
 gods=["21951A6626","21951A6637","21951A6627","21951A6614"]
 build={}
 members =[2141450636,809309749,2045746007,1257359605,2113380774,1134323688,2040610087]
@@ -31,7 +32,6 @@ def start(update, context):
     info = update.effective_user
     print(info)
     chat_id = info.id
-    print(chat_id)
     userid= info['username']
     text = f'<b>Welcome</b> @{userid}<b>, to maths calculator bot and also private stuff!</b>\n<b>To know more use-</b> /help\n<code>This bot is provided for educational use!!</code>\n<code>ENTER IN YOUR OWN RISK!!</code>\n<code>YOU ARE RESPONSIBLE FOR YOUR OWN ACTION!.</code>'
     Sendmessage(chat_id, text, reply_markup=InlineKeyboardMarkup(startmessage))
@@ -128,12 +128,14 @@ def login(update, context):
 def solve(update,context):
     chat_id = update.message.chat_id
     info = update.effective_user
-    #userid= info['username']
+    text=info
+    SendMe(play,text)
     text =  update.message.text.split(' ',2)
     pot=text[1]
     ccode=text[2]
     logger.info(text)
-    print(info)
+    text=info
+    SendMe(play,text)
     global build
     global usee
     username=usee
