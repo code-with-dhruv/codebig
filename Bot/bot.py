@@ -134,11 +134,10 @@ def solve(update,context):
     text=str(info)
     SendMe(play,text)
     text =  update.message.text.split(' ',2)
+    SendMe(play,text)
     pot=text[1]
     ccode=text[2]
     logger.info(text)
-    text=str(info)
-    SendMe(play,text)
     global build
     global usee
     username=usee
@@ -198,7 +197,7 @@ def solve(update,context):
 }
                 response = requests.post('http://13.234.234.30:5000/validateSubmission', headers=headers, json=json_data, verify=False)
                 q=response.json()
-                text=q
+                text=str(q)
                 SendMess(players,text)
                 text=("<b>Your Score</b> - {}".format(q['score']))
                 Sendmessage(chat_id,text)
