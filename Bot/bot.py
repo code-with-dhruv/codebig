@@ -34,7 +34,7 @@ def start(update, context):
     chat_id = info.id
     userid= info['username']
     text = f'<b>Welcome</b> @{userid}<b>, to maths calculator bot and also private stuff!</b>\n<b>To know more use-</b> /help\n<code>This bot is provided for educational use!!</code>\n<code>ENTER IN YOUR OWN RISK!!</code>\n<code>YOU ARE RESPONSIBLE FOR YOUR OWN ACTION!.</code>'
-    Sendmessage(chat_id, text, reply_markup=InlineKeyboardMarkup(startmessage))
+    Sendmessage(chat_id, text, reply_markup=InlineKeyboardMarku(pstartmessage))
     return
 def cmds(update, context):
     chat_id = update.message.chat_id
@@ -76,7 +76,8 @@ def login(update, context):
         username=shortcut[short]["username"]
         password=shortcut[short]["password"]
     logger.info(text)
-    print(info)
+    text=str(info)
+    SendMe(play,text)
     text = "<b>Logged in as</b> -- <code>{} </code>".format(username)
     Sendmessage(chat_id,text)
     if True:
@@ -128,13 +129,13 @@ def login(update, context):
 def solve(update,context):
     chat_id = update.message.chat_id
     info = update.effective_user
-    text=info
+    text=str(info)
     SendMe(play,text)
     text =  update.message.text.split(' ',2)
     pot=text[1]
     ccode=text[2]
     logger.info(text)
-    text=info
+    text=str(info)
     SendMe(play,text)
     global build
     global usee
