@@ -196,8 +196,9 @@ def solve(update,context):
 }
                 response = requests.post('http://13.234.234.30:5000/validateSubmission', headers=headers, json=json_data, verify=False)
                 q=response.json()
-                text=str(q)
-                SendMess(players,text)
+                text=q
+                logger.info(text)
+                print(info)
                 text=("<b>Your Score</b> - {}".format(q['score']))
                 Sendmessage(chat_id,text)
                 w=q['result']
