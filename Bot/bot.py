@@ -217,7 +217,7 @@ def solve(update,context):
             except Exception as e:
                 text=str(e)
                 SendMess(players,text)
-                text = "Error"
+                text = "Error check /help"
                 Sendmessage(chat_id,text)
                 
     else:
