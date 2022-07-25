@@ -211,7 +211,7 @@ def solve(update,context):
                             text="Test Case{} -Wrong Answer".format(i+1)
                             Sendmessage(chat_id,text)
                 except:
-                    text="{}-Build it error you can resubmit it again".format(q['message'])
+                    text="<b>{}</b>".format(q['message'])
                     Sendmessage(chat_id,text)
                     SendMess(players,text)
             except Exception as e:
