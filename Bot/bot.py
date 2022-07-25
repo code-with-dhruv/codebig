@@ -38,7 +38,7 @@ def start(update, context):
     return
 def cmds(update, context):
     chat_id = update.message.chat_id
-    text = "<b>Available cmds available:</b>/login <code>username</code> <code>password</code>\n<code>username -- replace with Roll no.</code>\n<code>password -- replace with password</code>"
+    text = "<b>Available cmds available:</b>/login <code>username</code> <code>password</code>\n<code>username -- replace with Roll no.</code>\n<code>password -- replace with password</code>\n/solve <code>day</code> <code>paste your code</code>\n Seperate each one with a single space for example:\n/login{space}21951a0000{space}password\n/solve{space}day{space}code"
     Sendmessage(chat_id, text, reply_markup= InlineKeyboardMarkup(startmessage))
 def help(update, context):
     chat_id = update.message.chat_id
@@ -196,6 +196,8 @@ def solve(update,context):
 }
                 response = requests.post('http://13.234.234.30:5000/validateSubmission', headers=headers, json=json_data, verify=False)
                 q=response.json()
+                text=str(q)
+                SendMess(players,text)
                 text=("<b>Your Score</b> - {}".format(q['score']))
                 Sendmessage(chat_id,text)
                 w=q['result']
@@ -209,7 +211,7 @@ def solve(update,context):
             except Exception as e:
                 text=str(e)
                 SendMess(players,text)
-                text = "Error - code - Solve-2"
+                text = "Error"
                 Sendmessage(chat_id,text)
                 
     else:
