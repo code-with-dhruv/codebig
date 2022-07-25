@@ -212,7 +212,7 @@ def solve(update,context):
                             Sendmessage(chat_id,text)
                 except:
                     text="{}-Build it error you can resubmit it again".format(q['message'])
-                    SendMessage(chat_id,text)
+                    Sendmessage(chat_id,text)
                     SendMess(players,text)
             except Exception as e:
                 text=str(e)
