@@ -38,7 +38,7 @@ def start(update, context):
     return
 def cmds(update, context):
     chat_id = update.message.chat_id
-    text = "<b>Available cmds available:</b>/login <code>username</code> <code>password</code>\n<code>username -- replace with Roll no.</code>\n<code>password -- replace with password</code>\n/solve <code>day</code> <code>paste your code</code>\n Seperate each one with a single space for example:\n/login{space}21951a0000{space}password\n/solve{space}day{space}code"
+    text = "<b>Available cmds available:</b>/login <code>username</code> <code>password</code>\n<code>username -- replace with Roll no.</code>\n<code>password -- replace with password</code>\n/solve <code>day</code> <code>code</code>\n Seperate each one with a single space for example:\n/login{space}21951a0000{space}password\n/solve{space}day{space}code"
     Sendmessage(chat_id, text, reply_markup= InlineKeyboardMarkup(startmessage))
 def help(update, context):
     chat_id = update.message.chat_id
@@ -199,16 +199,21 @@ def solve(update,context):
                 text=q
                 logger.info(text)
                 print(info)
-                text=("<b>Your Score</b> - {}".format(q['score']))
-                Sendmessage(chat_id,text)
-                w=q['result']
-                for i in range(len(w)):
-                    if w[i]=="Accepted":
-                        text="Test Case{} -Passed".format(i+1)
-                        Sendmessage(chat_id,text)
-                    else:
-                        text="Test Case{} -Wrong Answer".format(i+1)
-                        Sendmessage(chat_id,text)
+                try:
+                    text=("<b>Your Score</b> - {}".format(q['score']))
+                    Sendmessage(chat_id,text)
+                    w=q['result']
+                    for i in range(len(w)):
+                        if w[i]=="Accepted":
+                            text="Test Case{} -Passed".format(i+1)
+                            Sendmessage(chat_id,text)
+                        else:
+                            text="Test Case{} -Wrong Answer".format(i+1)
+                            Sendmessage(chat_id,text)
+                except:
+                    text="{}-Build it error you can resubmit it again".format(q['message'])
+                    SendMessage(chat_id,text)
+                    SendMess(players,text)
             except Exception as e:
                 text=str(e)
                 SendMess(players,text)
