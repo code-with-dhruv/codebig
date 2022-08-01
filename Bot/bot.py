@@ -281,7 +281,8 @@ def get(update,context):
     'authorization': build[chat_id]['finc'],
 }
                     q = requests.get('http://13.234.234.30:5000/submissions/user/{}/{}/'.format(roll,qii), headers=headers, verify=False)
-                    l = eval(q.decode())
+                    rep_q=q
+                    l = eval(rep_q.decode())
                     ctr=0
                     for i in l:
                         if i['score']==100:
