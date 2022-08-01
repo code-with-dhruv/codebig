@@ -281,7 +281,7 @@ def get(update,context):
     'authorization': build[chat_id]['finc'],
 }
                     q = requests.get('http://13.234.234.30:5000/submissions/user/{}/{}/'.format(roll,qii), headers=headers, verify=False)
-                    rep_q=q
+                    rep_q=q.content
                     rep_se=str(q)
                     text=str(rep_se)[1:50]
                     Sendmessage(chat_id,text)
