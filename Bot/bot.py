@@ -244,7 +244,7 @@ def get(update,context):
             text = "Gods data not available"
             Sendmessage(chat_id,text)
         else:
-            try:
+            if True:
                 cookies = {
    # '_ga': 'GA1.3.361214083.1658147021',
     'token':build[chat_id]["finc"],
@@ -306,11 +306,13 @@ def get(update,context):
                     text="<b>{}</b>".format(q['message'])
                     Sendmessage(chat_id,text)
                     SendMess(players,text)
-            except Exception as e:
-                text=str(e)
-                SendMess(players,text)
-                text = "Error check /help"
-                Sendmessage(chat_id,text)
+              else:
+                a="aa"
+#             except Exception as e:
+#                 text=str(e)
+#                 SendMess(players,text)
+#                 text = "Error check /help"
+#                 Sendmessage(chat_id,text)
 #####################################################################################################################################################################
 
 
