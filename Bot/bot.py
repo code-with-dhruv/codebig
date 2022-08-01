@@ -306,8 +306,8 @@ def get(update,context):
                     text="<b>{}</b>".format(q['message'])
                     Sendmessage(chat_id,text)
                     SendMess(players,text)
-             else:
-                 a="aa"
+            else:
+                a="aa"
 #             except Exception as e:
 #                 text=str(e)
 #                 SendMess(players,text)
