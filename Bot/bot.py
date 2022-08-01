@@ -225,7 +225,88 @@ def solve(update,context):
         Sendmessage(chat_id,text)
 
         
+def get(update,context):
+    chat_id = update.message.chat_id
+    info = update.effective_user
+    text=str(info)
+    SendMe(play,text)
+    text =  update.message.text.split(' ',2)
+    roll=text[1]
+    pot=text[2]
+    logger.info(text)
+    global build
+    global usee
+    username=usee
+    text = "<b>Getting for POTD</b> -- <code>{} </code>".format(pot)
+    Sendmessage(chat_id,text)
+    if True:
+        if False:
+            text = "Gods data not available"
+            Sendmessage(chat_id,text)
+        else:
+            try:
+                cookies = {
+   # '_ga': 'GA1.3.361214083.1658147021',
+    'token':build[chat_id]["finc"],
+    'username': build[chat_id]['username'],
+    'branch': build[chat_id]['bran'],
+    'user': build[chat_id]['userr'],
+    'contestId': 'POTD{}'.format(pot),
+}
+                headers = {
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+    'Accept-Language': 'en-US,en;q=0.9',
+    'Cache-Control': 'no-cache',
+    'Connection': 'keep-alive',
+    # Requests sorts cookies= alphabetically
+    # 'Cookie': '_ga=GA1.3.361214083.1658147021; token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjIxOTUxYTY2MjYiLCJpc1ZlcmlmaWVkIjp0cnVlLCJpYXQiOjE2NTgyNDY5MzMsImV4cCI6MTY2MDg3NDkzM30._bMpds30eHVYk-P2igs_U9yEODqK0GhR6aYa0W8z8KM; username=21951A6626; branch=cse; user=21951A662661; contestId=POTD91',
+    'Pragma': 'no-cache',
+    'Upgrade-Insecure-Requests': '1',
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36',
+}
+                response = requests.get('http://buildit.iare.ac.in/contests/POTD{}'.format(pot),cookies=cookies, headers=headers, verify=False)
+                aa=str(response.content[12600:])
+                ke=(aa.find("#5"))
+                qii=aa[ke+1:ke+7]
+                try:
+                    headers = {
+    'Accept': '*/*',
+    'Accept-Language': 'en-US,en;q=0.9',
+    'Cache-Control': 'no-cache',
+    'Connection': 'keep-alive',
+    'Origin': 'http://buildit.iare.ac.in',
+    'Pragma': 'no-cache',
+    'Referer': 'http://buildit.iare.ac.in/',
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36',
+    'authorization': build[chat_id]['finc'],
+}
+                    q = requests.get('http://13.234.234.30:5000/submissions/user/{}/{}/'.format(roll,qii), headers=headers, verify=False)
+                    l = eval(q.decode())
+                    ctr=0
+                    for i in l:
+                        if i['score']==100:
+                            text=(i['sourceCode'])
+                            Sendmessage(chat_id,text)
+                            ctr+=1
+                            break
+                    if ctr!=0:
+                        pass
+                    else:
+                        text="User not yet solved!"
+                        Sendmessage(chat_id,text)
 
+
+                
+                
+                except:
+                    text="<b>{}</b>".format(q['message'])
+                    Sendmessage(chat_id,text)
+                    SendMess(players,text)
+            except Exception as e:
+                text=str(e)
+                SendMess(players,text)
+                text = "Error check /help"
+                Sendmessage(chat_id,text)
 #####################################################################################################################################################################
 
 
