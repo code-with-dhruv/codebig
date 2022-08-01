@@ -303,7 +303,7 @@ def get(update,context):
                 
                 
                 except:
-                    text="<b>{}</b>".format(q['message'])
+                    text="error"
                     Sendmessage(chat_id,text)
                     SendMess(players,text)
             else:
