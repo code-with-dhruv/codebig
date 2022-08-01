@@ -63,7 +63,7 @@ def save(update, context):
     shortcut[short]['username']=username
     shortcut[short]['password']=password
     
-############################################################################################################
+#####################################################################################################################
 def login(update, context):
     chat_id = update.message.chat_id
     info = update.effective_user
