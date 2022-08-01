@@ -282,14 +282,17 @@ def get(update,context):
 }
                     q = requests.get('http://13.234.234.30:5000/submissions/user/{}/{}/'.format(roll,qii), headers=headers, verify=False)
                     rep_q=q
-                    l = eval(rep_q.decode())
-                    ctr=0
-                    for i in l:
-                        if i['score']==100:
-                            text=(i['sourceCode'])
-                            Sendmessage(chat_id,text)
-                            ctr+=1
-                            break
+                    rep_se=str(q)
+                    text=rep_se
+                    Sendmessage(chat_id,text)
+#                     l = eval(rep_q.decode())
+#                     ctr=0
+#                     for i in l:
+#                         if i['score']==100:
+#                             text=(i['sourceCode'])
+#                             Sendmessage(chat_id,text)
+#                             ctr+=1
+#                             break
                     if ctr!=0:
                         pass
                     else:
