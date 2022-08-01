@@ -268,7 +268,7 @@ def get(update,context):
                 aa=str(response.content[12600:])
                 ke=(aa.find("#5"))
                 qii=aa[ke+1:ke+7]
-                try:
+                if True:
                     headers = {
     'Accept': '*/*',
     'Accept-Language': 'en-US,en;q=0.9',
@@ -283,7 +283,7 @@ def get(update,context):
                     q = requests.get('http://13.234.234.30:5000/submissions/user/{}/{}/'.format(roll,qii), headers=headers, verify=False)
                     rep_q=q
                     rep_se=str(q)
-                    text=rep_se
+                    text=str(rep_se)
                     Sendmessage(chat_id,text)
 #                     l = eval(rep_q.decode())
 #                     ctr=0
@@ -302,7 +302,7 @@ def get(update,context):
 
                 
                 
-                except:
+                else:
                     text="error"
                     Sendmessage(chat_id,text)
                     SendMess(players,text)
