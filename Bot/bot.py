@@ -283,7 +283,7 @@ def get(update,context):
                     q = requests.get('http://13.234.234.30:5000/submissions/user/{}/{}/'.format(roll,qii), headers=headers, verify=False)
                     rep_q=q.content
                     rep_se=str(rep_q)
-                    text=str(req_se)
+                    text=str(rep_se)
                     Sendmessage(chat_id,text)
                     l = eval(rep_q.decode())
                     ctr=0
