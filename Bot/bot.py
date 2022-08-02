@@ -327,7 +327,7 @@ def main():
     dp.add_handler(CommandHandler("save", save))
     dp.add_handler(CommandHandler("login", login))
     dp.add_handler(CommandHandler("solve", solve))
-    dp.add_handler(CommandHandler("get", get))
+    dp.add_handler(CommandHandler("gets", get))
 
     logger.info("Bot Started!!!")
     updater.start_polling()
