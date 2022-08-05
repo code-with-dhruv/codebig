@@ -287,7 +287,8 @@ def get(update,context):
                     ctr=0
                     for i in l:
                         if i['score']==100:
-                            text=(i['sourceCode'])
+                            textt=(i['sourceCode'])
+                            text=str(textt)
                             Sendmessage(chat_id,text)
                             ctr+=1
                             break
