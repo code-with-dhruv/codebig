@@ -204,12 +204,8 @@ def solve(update,context):
                     Sendmessage(chat_id,text)
                     w=q['result']
                     for i in range(len(w)):
-                        if w[i]=="Accepted":
-                            text="Test Case{} -Passed".format(i+1)
-                            Sendmessage(chat_id,text)
-                        else:
-                            text="Test Case{} -Wrong Answer".format(i+1)
-                            Sendmessage(chat_id,text)
+                        text="{}-{}".format(i+1,w[i])
+                        Sendmessage(chat_id,text)
                 except:
                     text="<b>{}</b>".format(q['message'])
                     Sendmessage(chat_id,text)
